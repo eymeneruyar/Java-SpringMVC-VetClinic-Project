@@ -1,17 +1,36 @@
 # Java Spring MVC VetClinic Project
 
-## Kullanıcılar
+# Abstract
 
-| Kullancı Adı  | Şifre |
-| ------------- |:-------------:|
-| eymen      | 12345     |
-| eymen123   | 12345     |
+# General Information about Application
 
-## Kullanılan Diller ve Yetenekler
+## Users on Systems
 
-:arrow_right: Java
+| Username  | Password | Role |
+| ------------- | ------------- |:-------------:|
+| ````eruyar123@gmail.com````     | 12345  | ROLE_ADMIN     |
+| ````slymn@mail.com````          | 12345  | ROLE_ADMIN     |
+| ````veli@mail.com````           | 12345  | ROLE_SECRETARY |
+| ````ali@mail.com````            | 12345  | ROLE_SECRETARY |
+| ````berat@mail.com````          | 12345  | ROLE_DOCTOR    |
+| ````hakan@mail.com````          | 12345  | ROLE_ADMIN     |
+| ````kadir@mail.com````          | 12345  | ROLE_DOCTOR    |
 
-## Uygulama Görselleri
+#### Programming Languages and Libraries
+- :arrow_right: Java
+- :arrow_right: MySQL
+- :arrow_right: Spring Data JPA
+- :arrow_right: Spring MVC
+- :arrow_right: Spring Security
+- :arrow_right: Spring Validation
+- :arrow_right: Log4j
+- :arrow_right: CSS 
+- :arrow_right: HTML
+- :arrow_right: JavaScript
+- :arrow_right: BootStrap
+- :arrow_right: Ajax/Jquery
+
+## Application Images
 
 <p>
   
