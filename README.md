@@ -1,8 +1,15 @@
 # Java Spring MVC VetClinic Project
 
 # Abstract
+This project is developed for vets and workers. The goal of the Vet Clinic project is to create a patient, product, and cash box management multi-part platform that abilities following patient's results, management of the products in the clinic, and cash box management.
 
 # General Information about Application
+When the program runs for the first time, the login page welcomes us. Firstly, if you don't have an account, can create an account from the sign-up page. However, I must say that in the register of users made from this page, the user role is determined as secretary. After the registration process, you can sign into the Vet Clinic program. On the home page, there is various information about the clinic such as earnings, general statics, daily registered patients, and daily appointment of patients. You can go to the "Customer/Patients" page to register of customer or patient and on this page can register the customer. Also to the chosen customer can be added patient. Customer and patient searches are made through the "Customer Search" and "Patient Search" pages. In addition, there are actions such as deleting and editing for customers and patients on these pages. On the "Treatment" page, the treatment findings of the patients of the selected customer are processed by the vet and the same page has such as delete and update operations. On the "Appointment Calendar" page, the secretary or doctor can add a new appointment. Added appointments are displayed on the main page when the day comes. On the "Sales" page, the clinic sale the product such as cat and dog food to a customer. Similarly, on the "Buying" page, it is possible to purchase products from suppliers for the clinic.
+
+On the "Laboratory" page, we can add, view result details, and delete patients' lab results. For all of the payment in and out operations can use the "Pay Actions" page and also earnings chart is updated in real-time on the home page with all payment operations. "Product" and "Vaccine" definition pages have a similar structure. On both pages, takes actions such as add, list, delete, and update for the product and vaccine stock of the clinic. There are similar actions such as add, list, delete, and update operations on the "Storage" and "Suppliers" pages. On the "Agenda" page, a logged-in user can manage their notes on this page. The "Account" page under the "Settings" menu displays, the information of the active user and can also change the password. On the "Users" page under the "Settings" menu, you can add, delete, and update users in the system. However, only users with the "ROLE_ADMIN" privilege can access this page.
+
+Finally, this project is developed by using IntelliJ IDEA. I use such as Java 8, MySQL database, Spring Data JPA, Spring Security, Spring Validation technologies to design the backend side of the program but use to design frontend side such as HTML, CSS, Javascript, and BootStrap technologies. You can use the Vet Clinic project by logging in with the accounts below.
+
 
 ## Users on Systems
 
