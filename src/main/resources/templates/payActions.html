@@ -1,0 +1,247 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Süleyman KARACA
+    Project Name: Vet Klinik
+    Page: Product Definition Page 
+    Version: v1.0
+    GitHub: https://github.com/slymnkrc
+    Date: 12.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+<head>
+    <title>Kasa İşlemleri</title>
+
+    <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Kasaya Para Girişi</h4>
+                        </div>
+                        <div class="card-body">
+                            <form id="formPayin" class="form form-vertical">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Müşteri Seçiniz</label>
+                                            <select id="selectCustomer" class="select2 form-control form-control-lg">
+                                                <option value="default">Ödeme Yapacak Müşteriyi Seçiniz</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Fiş Numaraları</label>
+                                            <select id="receiptCustomer" class="select2 form-control form-control-lg">
+                                                <option value="default">Ödeme Yapılacak Fiş Numarasını Seçiniz</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Açıklama</label>
+                                            <textarea id="noteIn" name="noteIn" class="form-control"
+                                                      style="height: 95px;"
+                                                      placeholder="Açıklama"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>İşlem Tarihi</label>
+                                            <input id="transactionDateOut" name="transactionDateOut"
+                                                   class="form-control" disabled></input>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Tutar</label>
+                                            <input id="amountIn" name="amountIn" type="number" class="form-control"
+                                                   placeholder="Tutar Giriniz"></input>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Ödeme Yöntemi</label>
+                                            <select id="paymentType"  class="select2 form-control form-control-lg">
+                                                <option value="1">Kredi Kartı</option>
+                                                <option value="2">Banka Kartı</option>
+                                                <option value="3">Havale/EFT</option>
+                                                <option value="4">Nakit</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary mr-1">Gönder</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Temizle</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Kasadan Para Çıkışı</h4>
+                        </div>
+                        <div class="card-body">
+                            <form class="form form-vertical" id="formPayOut">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Tedarikçi Seçiniz</label>
+                                            <select id="supplierSelect" class="select2 form-control form-control-lg">
+                                                <option value="default">Ödeme Yapılacak Tedarikçiyi Seçiniz</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Fiş Numaraları</label>
+                                            <select id="receiptSelect" class="select2 form-control form-control-lg">
+                                                <option value="default">Ödeme Yapılacak Fiş Numarasını Seçiniz</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Açıklama</label>
+                                            <textarea id="noteOut" name="noteOut" class="form-control"
+                                                      style="height: 95px;"
+                                                      placeholder="Açıklama"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>İşlem Tarihi</label>
+                                            <input id="transactionDateIn" name="transactionDate" class="form-control"
+                                                   disabled></input>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Tutar</label>
+                                            <input id="amountOut" name="amountOut" type="number" class="form-control"
+                                                   placeholder="Tutar Giriniz"></input>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Ödeme Yöntemi</label>
+                                            <select id="paymentTypeOut" class="select2 form-control form-control-lg">
+                                                <option value="1">Kredi Kartı</option>
+                                                <option value="2">Banka Kartı</option>
+                                                <option value="3">Havale/EFT</option>
+                                                <option value="4">Nakit</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary mr-1">Gönder</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Temizle</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Vertical form layout section end -->
+
+        <!-- Basic table -->
+        <section id="basic-datatable">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="datatables-basic table" id="payActionsTable">
+                            <thead>
+                            <tr>
+
+                                <th>id</th>
+                                <th>İşlem Türü</th>
+                                <th>İşlem Tarihi</th>
+                                <th>Ödeme Yöntemi</th>
+                                <th>Fiş Numarası</th>
+                                <th>Müşteri/Tedarikçi</th>
+                                <th>Açıklama</th>
+                                <th>Tutar</th>
+                                <th>İşlemler</th>
+                            </tr>
+                            </thead>
+                            <tbody id="payActionsBody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- END: Content-->
+</th:block>
+
+
+<th:block layout:fragment="contentJs">
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+    <script th:src="@{/mainJs/payActions.js}"></script>
+
+
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+</th:block>
+
+</body>
+</html>

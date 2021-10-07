@@ -1,0 +1,177 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Eyüp Eymen ERUYAR
+    Project Name: Vet Klinik
+    Page: Home Page 
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar
+    Date: 11.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+  <head>
+    <title>Ana Sayfa</title>
+  </head>
+
+  <body>
+      
+  <th:block layout:fragment="content">
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <!-- Dashboard Ecommerce Starts -->
+                <section id="dashboard-ecommerce">
+                    <div class="row match-height">
+                        <!-- Earnings Card -->
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="card earnings-card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title mb-1">Kazançlar</h4>
+                                            <div class="font-small-2">Net Kazanç</div>
+                                            <h5 class="mb-1" id="net" ></h5> <!--  -->
+                                        </div>
+                                        <div class="col-6">
+                                            <div id="earnings-chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Earnings Card -->
+
+                        <!-- Statistics Card -->
+                        <div class="col-xl-8 col-md-6 col-12">
+                            <div class="card card-statistics">
+                                <div class="card-header">
+                                    <h4 class="card-title">İstatistikler</h4>
+                                </div>
+                                <div class="card-body statistics-body">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                                            <div class="media">
+                                                <div class="avatar bg-light-primary mr-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="trending-up" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0" id="saleCount"></h4>
+                                                    <p class="card-text font-small-3 mb-0">Satışlar</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                                            <div class="media">
+                                                <div class="avatar bg-light-info mr-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="user" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0" id="customerCount"></h4>
+                                                    <p class="card-text font-small-3 mb-0">Müşteri Sayısı</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-sm-0">
+                                            <div class="media">
+                                                <div class="avatar bg-light-danger mr-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="box" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0" id="productCount"></h4>
+                                                    <p class="card-text font-small-3 mb-0">Ürünler</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-sm-6 col-12">
+                                            <div class="media">
+                                                <div class="avatar bg-light-success mr-2">
+                                                    <div class="avatar-content">
+                                                        <i class="avatar-icon"><span style="font-size: 19px;">&#8378;</span>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0" id="netAmount"></h4>
+                                                    <p class="card-text font-small-3 mb-0">Ciro</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Statistics Card -->
+                    </div>
+
+                    <div class="row match-height">
+                        <!-- Company Table Card -->
+                        <div class="col-lg-8 col-12">
+                            <div class="card card-company-table">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Hasta Sahibi</th>
+                                                    <th>Telefon Numarası</th>
+                                                    <th>Hasta</th>
+                                                    <th>Karne Numarası</th>
+                                                    <th>Tür</th>
+                                                    <th>Cins</th>
+                                                    <th>Cinsiyet</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="patientTable">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Company Table Card -->
+
+                        <!-- Developer Meetup Card -->
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="card card-developer-meetup">
+                                <div class="meetup-img-wrapper rounded-top text-center">
+                                    <img src="/app-assets/images/illustration/email.svg" alt="Meeting Pic" height="170" />
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-lg-12 col-md-12"  id="appoitmentInfo">
+
+                                    </div>
+                                </div>
+                                <!-- Dynamic Default Pagination starts -->
+                                <ul class="pagination-sm page1-links justify-content-end mr-2"></ul>
+                                <!-- Dynamic Default Pagination ends -->
+                            </div>
+                        </div>
+                        <!--/ Developer Meetup Card -->
+                    </div>
+    </div>
+  </th:block>
+
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+
+  <th:block layout:fragment="contentJs">
+    <script th:src="@{/app-assets/vendors/js/pagination/jquery.bootpag.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pagination/jquery.twbsPagination.min.js}"></script>
+    <!-- <script th:src="@{/app-assets/js/scripts/pagination/components-pagination.js}"></script> -->
+    <script th:src="@{/mainJs/home.js}"></script>
+  </th:block>
+
+  </body>
+</html>

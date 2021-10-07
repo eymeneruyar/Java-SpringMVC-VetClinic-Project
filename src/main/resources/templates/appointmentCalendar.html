@@ -1,0 +1,47 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Eyüp Eymen ERUYAR
+    Project Name: Vet Klinik
+    Page: Appointment Calender Page 
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar
+    Date: 12.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+  <head>
+    <title>Randevu Takvimi</title>
+
+  <!-------------------------------------------------------- Only This Page Required CSS - Start --------------------------------------------------------->
+
+
+
+  <!-------------------------------------------------------- Only This Page Required CSS - End ----------------------------------------------------------->
+    
+  </head>
+
+  <body>
+
+
+  <th:block layout:fragment="content">
+      <!-- BEGIN: Content-->
+      <div  class="app-content content">
+          <iframe th:src="@{/calendarFrame}" width="1600" height="800"></iframe>
+      </div>
+      <!-- END: Content-->
+  </th:block>
+
+
+  <th:block layout:fragment="contentJs">
+    <!-------------------------------------------------------- Only This Page Required JavaScript - Start --------------------------------------------------------->
+
+
+
+    <!-------------------------------------------------------- Only This Page Required JavaScript - End ----------------------------------------------------------->
+  </th:block>
+
+  </body>
+</html>

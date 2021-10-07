@@ -1,0 +1,207 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Eyüp Eymen ERUYAR
+    Project Name: Vet Klinik
+    Page: Account Page 
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar
+    Date: 14.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+  <head>
+    <title>Hesabım</title>
+
+
+  </head>
+  <body>
+
+  <th:block layout:fragment="content">
+     <!-- BEGIN: Content-->
+     <div class="app-content content ">
+        <div class="content-wrapper">
+            
+            <div class="content-body">
+                <!-- account setting page -->
+                <section id="page-account-settings">
+                    <div class="row">
+                        <!-- left menu section -->
+                        <div class="col-md-2 mb-2 mb-md-0">
+                            <ul class="nav nav-pills flex-column nav-left">
+                                <!-- general -->
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="account-pill-general" data-toggle="pill" href="#account-vertical-general" aria-expanded="true">
+                                        <i data-feather="user" class="font-medium-3 mr-1"></i>
+                                        <span class="font-weight-bold">Genel</span>
+                                    </a>
+                                </li>
+                                <!-- change password -->
+                                <li class="nav-item">
+                                    <a class="nav-link" id="account-pill-password" data-toggle="pill" href="#account-vertical-password" aria-expanded="false">
+                                        <i data-feather="lock" class="font-medium-3 mr-1"></i>
+                                        <span class="font-weight-bold">Şifre Değiştir</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--/ left menu section -->
+
+                        <!-- right content section -->
+                        <div class="col-md-10">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title" style="font-size: 30px; font-weight: bold;">Hesabım</h4>
+                                    <!-- Error Block -->
+                                    <div class="demo-spacing-0">
+                                        <div th:if="${ error != null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <div class="alert-body" th:text="${error}">
+                                                Hata!
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Error Block -->
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <!-- general tab -->
+                                        <div role="tabpanel" class="tab-pane active" id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
+                                            <!-- header media -->
+                                            <form th:action="@{/account/uploadImage}" method="post" enctype="multipart/form-data">
+                                                <div class="media">
+                                                    <span class="mr-25" id="accountImage">
+                                                        <!-- Burada tanımlanan image dosyası accountActivities.js dosyasına taşındı. -->
+                                                    </span>
+                                                    <!-- upload and reset button -->
+                                                    <div class="media-body mt-75 ml-1">
+                                                        <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Yükle</label>
+                                                        <input type="file" name="imageName" id="account-upload" hidden accept="image/*" />
+                                                        <button type="submit" class="btn btn-sm btn-outline-success mb-75">Kaydet</button>
+                                                        <!-- <button type="button" onclick="return confirm('Profil resminizi silmek istediğinizden emin misiniz?');" th:href="@{'/account/deleteImage'}" class="btn btn-sm btn-outline-danger mb-75">Sil</button> -->
+                                                    </div>
+                                                    <!--/ upload and reset button -->
+                                                </div>
+                                            </form>
+                                            <!--/ header media -->
+
+                                            <!-- form -->
+                                            <form th:object="${usInfo}">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="uName">Ad</label>
+                                                            <input th:value="${usInfo.uName}" type="text" class="form-control" id="uName" name="uName" placeholder="Ad" disabled/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="uSurname">Soyad</label>
+                                                            <input th:value="${usInfo.uSurname}" type="text" class="form-control" id="uSurname" name="uSurname" placeholder="Soyad" disabled/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="uEmail">E-Mail</label>
+                                                            <input th:value="${usInfo.uEmail}" type="email" class="form-control" id="uEmail" name="uEmail" placeholder="Email" disabled/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="uFirmName">Firma Adı</label>
+                                                            <input th:value="${usInfo.uFirmName}" type="text" class="form-control" id="uFirmName" name="uFirmName" placeholder="Firma Adı" disabled/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="uPhone">Telefon Numarası</label>
+                                                            <input th:value="${usInfo.uPhone}" type="number" class="form-control" id="uPhone" name="uPhone" placeholder="Telefon Numarası" disabled/>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- <div class="col-12">
+                                                        <button type="submit" class="btn btn-primary mt-2 mr-1">Kaydet</button>
+                                                        <button type="reset" class="btn btn-outline-secondary mt-2">Temizle</button>
+                                                    </div> -->
+                                                </div>
+                                            </form>
+                                            <!--/ form -->
+                                        </div>
+                                        <!--/ general tab -->
+
+                                        <!-- change password -->
+                                        <div class="tab-pane fade" id="account-vertical-password" role="tabpanel" aria-labelledby="account-pill-password" aria-expanded="false">
+                                            <!-- form -->
+                                            <form th:action="@{/account/changePass}" method="post">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="account-old-password">Eski Şifre</label>
+                                                            <div class="input-group form-password-toggle input-group-merge">
+                                                                <input type="password" class="form-control" id="account-old-password" name="oldPass" placeholder="Eski Şifre" required/>
+                                                                <div class="input-group-append">
+                                                                    <div class="input-group-text cursor-pointer">
+                                                                        <i data-feather="eye"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="account-new-password">Yeni Şifre</label>
+                                                            <div class="input-group form-password-toggle input-group-merge">
+                                                                <input type="password" id="account-new-password" name="newPass" class="form-control" placeholder="Yeni Şifre" required/>
+                                                                <div class="input-group-append">
+                                                                    <div class="input-group-text cursor-pointer">
+                                                                        <i data-feather="eye"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="account-retype-new-password">Yeni Şifre (Tekrar)</label>
+                                                            <div class="input-group form-password-toggle input-group-merge">
+                                                                <input type="password" class="form-control" id="account-retype-new-password" name="reNewPass" placeholder="Yeni Şifre (Tekrar)" required/>
+                                                                <div class="input-group-append">
+                                                                    <div class="input-group-text cursor-pointer"><i data-feather="eye"></i></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="submit" class="btn btn-primary mr-1 mt-1">Kaydet</button>
+                                                        <button type="reset" class="btn btn-outline-secondary mt-1">Temizle</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!--/ form -->
+                                        </div>
+                                        <!--/ change password -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ right content section -->
+                    </div>
+                </section>
+                <!-- / account setting page -->
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+  </th:block>
+
+  <script th:src="@{/app-assets/js/scripts/components/components-alerts.js}"></script>
+
+  </body>
+</html>

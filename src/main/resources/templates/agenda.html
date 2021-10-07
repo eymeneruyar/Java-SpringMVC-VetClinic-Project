@@ -1,0 +1,105 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Eyüp Eymen ERUYAR
+    Project Name: Vet Klinik
+    Page: Agenda Page
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar
+    Date: 12.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+  <head>
+    <title>Ajandam</title>
+
+    <!-------------------------------------------------------- Agenda CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/pickers/pickadate/pickadate.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/pickers/form-flat-pickr.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/pickers/form-pickadate.css}">
+
+    <!-------------------------------------------------------- Agenda CSS - End ----------------------------------------------------------->
+
+  </head>
+  <body>
+
+  <th:block layout:fragment="content">
+      <!-- BEGIN: Content-->
+      <div class="app-content content ">
+
+          <!-- Basic multiple Column Form section start -->
+          <section >
+              <div class="row">
+                  <div class="col-12">
+                      <div class="card">
+                          <div class="card-header">
+                              <h4 class="card-title">Not Ekle</h4>
+                          </div>
+                          <div class="card-body">
+
+                              <form class="form" id="noteAddForm">
+                                  <div class="row">
+                                      <div class="col-md-4 col-12">
+                                          <div class="form-group">
+                                              <label for="agendaTitle">Başlık</label>
+                                              <input type="text" id="agendaTitle" class="form-control" placeholder="Başlık" name="agendaTitle" required/>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="agendaDate" class="form-label">Tarih</label>
+                                              <input type="text" id="agendaDate" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required/>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-8 col-12">
+                                          <div class="form-group">
+                                              <label for="agendaNote">Not</label>
+                                              <textarea id="agendaNote" name="agendaNote" class="form-control" style="height: 115px" placeholder="Notlarınızı buraya ekleyebilirsiniz..." required></textarea>
+                                          </div>
+                                      </div>
+                                      <div class="col-12">
+                                          <button type="submit" class="btn btn-primary mr-1">Kaydet</button>
+                                          <button type="reset" class="btn btn-outline-secondary">Temizle</button>
+                                      </div>
+                                  </div>
+                              </form>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+
+          <!-- Developer Meetup Card -->
+          <th:block th:if="${noteList.size() > 0 }">
+              <div class="row" id="noteCard">
+
+              </div>
+          </th:block>
+          <!--/ Developer Meetup Card -->
+
+      </div>
+  </th:block>
+
+
+  <th:block layout:fragment="contentJs">
+    <!-------------------------------------------------------- Agenda JavaScript File - Start -------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/picker.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/picker.date.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/picker.time.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/legacy.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/pickers/form-pickers.js}"></script>
+
+    <script th:src="@{/mainJs/agenda.js}"></script>
+
+    <!-------------------------------------------------------- Agenda JavaScript File - End ---------------------------------------------------------->
+  </th:block>
+
+
+  </body>
+</html>

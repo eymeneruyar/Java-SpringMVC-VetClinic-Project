@@ -1,0 +1,79 @@
+<!-- Project Information - Start -->
+<!-- 
+    Name: Süleyman 
+    Surname: KARACA
+    Version: v1.0
+    Date: 11.09.2021
+    contact: https://github.com/slymnkrc
+-->
+<!-- Project Information - End -->
+
+
+<!DOCTYPE html>
+<html lang="en" class="Gibbu_@hotmail.com">
+<head>
+  <meta charset="UTF-8">
+  <title>Kayıt Yap</title>
+  <link rel="apple-touch-icon" th:href="@{/app-assets/images/ico/apple-icon-120.png}">
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{/app-assets/images/ico/favicon.ico}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="/login/css/register.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- NORMALIZED CSS INSTALLED-->
+<!-- View settings for more info.-->
+<div id="container">
+  <div id="inviteContainer">
+    <div class="logoContainer"><img class="text" src="/login/images/logo/logo.png"/><h2 class="brand-text">Vet Klinik</h2></div>
+    <div class="acceptContainer">
+
+      <form th:action="@{'/register'}" method="post">
+        <h1>Yeni Üyelik</h1>
+        <div class="formContainer">
+          <div class="formDiv" style="transition-delay: 0.2s">
+            <p>FİRMA ADI</p>
+            <input type="text" name="uFirmName" id="uFirmName" required="" autofocus/>
+          </div>
+          <div class="formDiv" style="transition-delay: 0.2s">
+            <p>MAİL</p>
+            <input type="email" name="uEmail" id="uEmail" required=""/>
+          </div>
+          <div class="formDiv" style="transition-delay: 0.2s">
+            <p>CEP TELEFONU</p>
+            <input type="tel" name="uPhone" id="uPhone" required=""/>
+          </div>
+          <div class="formDiv" style="transition-delay: 0.2s">
+            <p>ADI</p>
+            <input type="text" name="uName" id="uName" required=""/>
+          </div>
+          <div class="formDiv" style="transition-delay: 0.2s">
+            <p>SOYADI</p>
+            <input type="text" name="uSurname" id="uSurname" required=""/>
+          </div>
+          
+          <div class="formDiv" style="transition-delay: 0.4s">
+            <p>ŞİFRE</p>
+            <input type="password" name="uPassword" id="uPassword" required=""/>
+          </div>
+          <div class="formDiv" style="transition-delay: 0.6s">
+            <button class="acceptBtn" type="submit">KAYIT OL</button>
+            <span class="register"><a href="login.html">Giriş Sayfasına Dön</a></span>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<!-- partial -->
+
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+<script th:src="@{https://use.fontawesome.com/releases/v5.0.1/js/all.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.js}" integrity="sha256-mkdmXjMvBcpAyyFNCVdbwg4v+ycJho65QLDwVE3ViDs=" crossorigin="anonymous"></script>
+<script  th:src="@{/login/js/register.js}"></script>
+
+</body>
+</html>

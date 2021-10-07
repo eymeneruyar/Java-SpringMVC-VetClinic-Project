@@ -1,0 +1,193 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Eyüp Eymen ERUYAR
+    Project Name: Vet Klinik
+    Page: Settings Users Page 
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar
+    Date: 13.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+  <head>
+    <title>Kullanıcılar</title>
+
+    <!-------------------------------------------------------- This Page Required CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/pickers/form-pickadate.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/pickers/form-flat-pickr.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/form-validation.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/animate/animate.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/extensions/sweetalert2.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/extensions/ext-component-sweet-alerts.css}">
+
+    <!-------------------------------------------------------- This Page Required CSS - End ----------------------------------------------------------->
+
+  </head>
+
+  <body>
+
+  <th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <!-- right content section -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" style="font-size: 30px; font-weight: bold;">Kullanıcı Ekle</h4>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <!-- general tab -->
+                        <div role="tabpanel" class="tab-pane active" id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
+
+                            <form th:action="@{'/settingsUsers/add'}" th:object="${createAccount}" method="post" id="userAddForm">
+                                <div class="row">
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="uName">Ad</label>
+                                            <input th:value="${us.uName}" type="text" class="form-control" id="uName" name="uName" placeholder="Ad" required/>
+                                            <div style="color: red" th:if="${#fields.hasErrors('uName')}" th:errors="*{uName}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="uSurname">Soyad</label>
+                                            <input th:value="${us.uSurname}" type="text" class="form-control" id="uSurname" name="uSurname" placeholder="Soyad" required/>
+                                            <div style="color: red" th:if="${#fields.hasErrors('uSurname')}" th:errors="*{uSurname}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="uEmail">E-mail</label>
+                                            <input th:value="${us.uEmail}" type="email" class="form-control" id="uEmail" name="uEmail" placeholder="E-Mail" required/>
+                                            <div style="color: red" th:if="${#fields.hasErrors('uEmail')}" th:errors="*{uEmail}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="uPhone">Telefon Numarası</label>
+                                            <input th:value="${us.uPhone}" type="number" class="form-control" id="uPhone" name="uPhone" required/>
+                                            <div style="color: red" th:if="${#fields.hasErrors('uPhone')}" th:errors="*{uPhone}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="uRoleStatus">Kullanıcı Yetkisi</label>
+                                            <select  class="form-control" name="uRoleStatus" id="uRoleStatus" required>
+                                                <option>Lütfen Seçim Yapınız</option>
+                                                <th:block th:each="item : ${roleList}">
+                                                    <option th:value="${item.rid}" th:text="${item.rName}"></option>
+                                                </th:block>
+                                            </select>
+                                            <div style="color: red" th:if="${#fields.hasErrors('uRoleStatus')}" th:errors="*{uRoleStatus}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="uPassword">Geçici Şifre</label>
+                                            <input type="password" class="form-control" id="uPassword" name="uPassword" required/>
+                                            <div style="color: red" th:if="${#fields.hasErrors('uPassword')}" th:errors="*{uPassword}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary mt-2 mr-1" >Kaydet</button>
+                                        <button type="reset" class="btn btn-outline-secondary mt-2">Temizle</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <!--/ general tab -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ right content section -->
+
+        <!-- Basic table -->
+        <section id="basic-datatable">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="datatables-basic table" id="settingsUsersTable">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Ad</th>
+                                    <th>Soyad</th>
+                                    <th>E-Mail</th>
+                                    <th>Telefon Numarası</th>
+                                    <th>Kullanıcı Yetkisi</th>
+                                    <th>Yönetim</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTable">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- END: Content-->
+  </th:block>
+    
+
+  <th:block layout:fragment="contentJs">
+    <!-------------------------------------------------------- This Page Required JavaScript File - Start ----------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/forms/validation/jquery.validate.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/extensions/dropzone.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+    <!--<script src="/app-assets/js/scripts/pages/page-account-settings.js"></script>-->
+    <script th:src="@{/app-assets/vendors/js/extensions/sweetalert2.all.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/extensions/polyfill.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/extensions/ext-component-sweet-alerts.js}"></script>
+    <script th:src="@{/mainJs/settingsUsers.js}"></script>
+
+    <!-------------------------------------------------------- This Page Required JavaScript File - End ------------------------------------------------------------->
+  </th:block>
+
+  </body>
+</html>

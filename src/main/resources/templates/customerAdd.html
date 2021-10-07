@@ -1,0 +1,435 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Name: Eyüp Eymen
+    Surname: ERUYAR
+    Project Name: Vet Klinik
+    Page: Customer Add Page 
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar
+    Date: 11.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+  <head>
+    <title>Müşteri Ekle</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-------------------------------------------------------- Only This Page Required CSS - Start --------------------------------------------------------->
+
+      <!------------------------------------- Date Picker CSS ------------------------------------->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/pickers/pickadate/pickadate.css}">
+      <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css}">
+
+      <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/pickers/form-flat-pickr.css}">
+      <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/pickers/form-pickadate.css}">
+      <!------------------------------------- Date Picker CSS ------------------------------------->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/form-validation.css}">
+      <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/form-wizard.css}">
+      <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/wizard/bs-stepper.min.css}">
+      <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+
+    <!-------------------------------------------------------- Only This Page Required CSS - End ----------------------------------------------------------->
+
+  </head>
+  <body>
+
+  <th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+
+
+        <div class="content-wrapper">
+
+            <div class="content-body">
+                 <!-- Horizontal Wizard -->
+                 <section class="horizontal-wizard">
+                    <div class="bs-stepper horizontal-wizard-example">
+                        <div class="bs-stepper-header" style="font-size: 30px; font-weight: bold;">Müşteri Bilgileri</div>
+                        <div class="bs-stepper-header">
+                            <div class="step" data-target="#account-details">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">1</span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Kişisel Bilgiler</span>
+                                        <span class="bs-stepper-subtitle">Kişisel Bilgi Ekle</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#personal-info">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">2</span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">İletişim Bilgileri</span>
+                                        <span class="bs-stepper-subtitle">İletişim Bilgileri Ekle</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#address-step">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">3</span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Adres Bilgileri</span>
+                                        <span class="bs-stepper-subtitle">Adres Ekle</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <i data-feather="chevron-right" class="font-medium-2"></i>
+                            </div>
+                            <div class="step" data-target="#social-links">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">4</span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Diğer</span>
+                                        <span class="bs-stepper-subtitle">Not Ekle</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bs-stepper-content">
+                            <div id="account-details" class="content">
+                                <div class="content-header">
+                                    <h5 class="mb-0">Kişisel Bilgiler</h5>
+                                    <small class="text-muted">Kişisel Bilgilerinizi Girin</small>
+                                </div>
+
+                                <form id="step1">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="cuName">Hasta Sahibi Adı</label>
+                                            <input type="text" name="cuName" id="cuName" class="form-control" placeholder="Ad" required/>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="cuSurname">Hasta Sahibi Soyadı</label>
+                                            <input type="text" name="cuSurname" id="cuSurname" class="form-control" placeholder="Soyad" required/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="cuTax">VN/TC No</label>
+                                            <input type="number" name="cuTax" id="cuTax" class="form-control" placeholder="VN/TC" required/>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="cuTaxOffice">Vergi Dairesi</label>
+                                            <input type="text" name="cuTaxOffice" id="cuTaxOffice" class="form-control" placeholder="Vergi Dairesi" />
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary btn-prev" disabled>
+                                        <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Geri</span>
+                                    </button>
+                                    <button onclick="fncStep1()" class="btn btn-primary btn-next">
+                                        <span class="align-middle d-sm-inline-block d-none">Devam Et</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <div id="personal-info" class="content">
+                                <div class="content-header">
+                                    <h5 class="mb-0">İletişim Bilgileri</h5>
+                                    <small>İletişim Bilgilerinizi Girin</small>
+                                </div>
+
+                                <form id="step2">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="cuPhone">Telefon Numarası</label>
+                                            <input type="number" name="cuPhone" id="cuPhone" class="form-control" placeholder="Telefon Numarası" required/>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="cuPhone2">2. Telefon Numarası</label>
+                                            <input type="number" name="cuPhone2" id="cuPhone2" class="form-control" placeholder="2. Telefon Numarası" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="cuEmail">E-Mail</label>
+                                            <input type="email" name="cuEmail" id="cuEmail" class="form-control" placeholder="E-Mail" required/>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label" for="cuType">Müşteri Grubu</label>
+                                            <select class="select2 form-control form-control-lg" name="cuType" id="cuType" style="border-style: none;">
+                                                <option value=" ">Lütfen Seçim Yapınız</option>
+                                                <option value="Bireysel">Bireysel</option>
+                                                <option value="Kurumsal"> Kurumsal</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary btn-prev">
+                                        <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Geri</span>
+                                    </button>
+                                    <button onclick="fncStep2()" class="btn btn-primary btn-next">
+                                        <span class="align-middle d-sm-inline-block d-none">Devam Et</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="address-step" class="content">
+                                <div class="content-header">
+                                    <h5 class="mb-0">Adres Bilgileri</h5>
+                                    <small>Adres Bilgilerinizi Girin</small>
+                                </div>
+
+                                <form id="step3">
+                                    <div class="row">
+
+                                        <div class="form-group col-md-6">
+                                            <label for="citySelect" >İl Seçiniz</label>
+                                            <select id="citySelect" class="select2 form-control form-control-lg" required>
+                                                <option value="default">Lütfen Seçim Yapınız</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="townSelect" >İlçe Seçiniz</label>
+                                            <select id="townSelect" class="select2 form-control form-control-lg" required>
+                                                <option value="default">Lütfen Seçim Yapınız</option>
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label class="form-label" for="cuAddress">Adres</label>
+                                            <textarea id="cuAddress" name="cuAddress" class="form-control" style="height: 100px" required></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary btn-prev">
+                                        <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Geri</span>
+                                    </button>
+                                    <button onclick="fncStep3()" class="btn btn-primary btn-next">
+                                        <span class="align-middle d-sm-inline-block d-none">Devam Et</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="social-links" class="content">
+                                <div class="content-header">
+                                    <h5 class="mb-0">Diğer</h5>
+                                </div>
+
+                                <form id="step4">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label class="form-label" for="cuNote">Not</label>
+                                            <textarea id="cuNote" name="cuNote" class="form-control" style="height: 100px" placeholder="Notlarınızı buraya ekleyebilirsiniz..."></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary btn-prev">
+                                        <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Geri</span>
+                                    </button>
+                                    <button onclick="fncStep4()" class="btn btn-success btn-next">
+                                        <span class="align-middle d-sm-inline-block d-none">Kaydet</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                                    </button>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                 </section>
+                <!-- /Horizontal Wizard -->
+            </div>
+
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section class="form-control-repeater">
+                    <div class="row">
+                        <!-- Invoice repeater -->
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title" style="font-size: 30px; font-weight: bold;">Hasta Bilgileri</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <form id="patientAddForm" th:object="${patient}">
+                                        <div data-repeater-list="invoice">
+                                            <div data-repeater-item>
+                                                <div class="row d-flex align-items-end">
+
+                                                    <div class="form-group col-md-4 col-12">
+                                                        <label class="form-label" for="customerId">Hasta Sahibi</label>
+                                                        <select class="select2 form-control form-control-lg" name="customerId" id="customerId" style="border-style: none;" required>
+                                                            <option th:value="-1">Lütfen Seçim Yapınız</option>
+                                                            <th:block th:each="item : ${customerList}">
+                                                                <option th:value="${item.cuId}" th:text="${item.cuName} + ' ' +  ${item.cuSurname}"></option>
+                                                            </th:block>
+                                                        </select>
+                                                        <div style="color: red" th:if="${#fields.hasErrors('customerId')}" th:errors="*{customerId}"></div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-12">
+                                                        <div class="form-group">
+                                                            <label for="paName">Hasta Adı</label>
+                                                            <input type="text" class="form-control" name="paName" id="paName" aria-describedby="itemname" required/>
+                                                            <div style="color: red" th:if="${#fields.hasErrors('paName')}" th:errors="*{paName}"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-12">
+                                                        <div class="form-group">
+                                                            <label for="paChipNo">Çip Numarası</label>
+                                                            <input type="text" class="form-control" name="paChipNo" id="paChipNo" aria-describedby="itemcost" required/>
+                                                            <div style="color: red" th:if="${#fields.hasErrors('paChipNo')}" th:errors="*{paChipNo}"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-12">
+                                                        <div class="form-group">
+                                                            <label for="paAirTagNo">Karne / Küpe Numarası</label>
+                                                            <input type="text" class="form-control" name="paAirTagNo" id="paAirTagNo" aria-describedby="itemquantity" required/>
+                                                            <div style="color: red" th:if="${#fields.hasErrors('paAirTagNo')}" th:errors="*{paAirTagNo}"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-12">
+                                                        <div class="form-group">
+                                                            <label for="paBirthDate">Doğum Tarihi</label>
+                                                            <input type="text" id="paBirthDate" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required/>
+                                                            <div style="color: red" th:if="${#fields.hasErrors('paBirthDate')}" th:errors="*{paBirthDate}"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-4 col-12">
+                                                        <label class="form-label" for="paType">Tür</label>
+                                                        <select class="select2 form-control form-control-lg" name="paType" id="paType" style="border-style: none;" required>
+                                                            <option th:value="-1">Lütfen Seçim Yapınız</option>
+                                                            <option>Kedi</option>
+                                                            <option>Köpek</option>
+                                                            <option>Egzotik</option>
+                                                            <option>Yabani</option>
+                                                        </select>
+                                                        <div style="color: red" th:if="${#fields.hasErrors('paType')}" th:errors="*{paType}"></div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-12">
+                                                        <div class="form-group">
+                                                            <label for="paKind">Cins</label>
+                                                            <input type="text" class="form-control" name="paKind" id="paKind" aria-describedby="itemquantity" required/>
+                                                            <div style="color: red" th:if="${#fields.hasErrors('paKind')}" th:errors="*{paKind}"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-12">
+                                                        <div class="form-group">
+                                                            <label for="paColor">Renk</label>
+                                                            <input type="text" class="form-control" name="paColor" id="paColor" aria-describedby="itemquantity"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-12">
+                                                        <div class="form-group">
+                                                            <label for="paSexType">Cinsiyet</label>
+                                                            <select class="form-control" id="paSexType" required>
+                                                                <option th:value="-1">Lütfen Seçim Yapınız</option>
+                                                                <option th:value="Dişi">Dişi</option>
+                                                                <option th:value="Erkek">Erkek</option>
+                                                            </select>
+                                                            <div style="color: red" th:if="${#fields.hasErrors('paSexType')}" th:errors="*{paSexType}"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 col-12">
+                                                        <div class="form-group">
+                                                            <label for="paSpay">Kısırlaştırıldı mı?</label>
+                                                            <select class="form-control" id="paSpay">
+                                                                <option th:value="-1">Lütfen Seçim Yapınız</option>
+                                                                <option th:value="Evet">Evet</option>
+                                                                <option th:value="Hayır">Hayır</option>
+                                                            </select>
+                                                            <div style="color: red" th:if="${#fields.hasErrors('paSpay')}" th:errors="*{paSpay}"></div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <hr/>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between">
+                                            <button type="reset" class="btn btn-outline-secondary">Temizle</button>
+                                            <button type="submit" class="btn btn-success btn-submit">Kaydet</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Invoice repeater -->
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- END: Content-->
+  </th:block>
+
+  <th:block layout:fragment="contentJs">
+  <!-------------------------------------------------------- Only This Page Required JavaScript - Start --------------------------------------------------------->
+    <!-------------------------------------- Form Wizard JavaScript Folders -------------------------------------->
+    
+    <script th:src="@{/app-assets/vendors/js/forms/wizard/bs-stepper.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/forms/validation/jquery.validate.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/form-wizard.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js}"></script>
+
+    <!-------------------------------------- Form Wizard JavaScript Folders -------------------------------------->
+
+    <!-------------------------------------- Date Picker JavaScript Folders -------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/picker.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/picker.date.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/picker.time.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/legacy.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/pickers/form-pickers.js}"></script>
+
+    <!-------------------------------------- Date Picker JavaScript Folders -------------------------------------->
+
+    <script th:src="@{/mainJs/customerAdd.js}"></script>
+
+  <!-------------------------------------------------------- Only This Page Required JavaScript - End ----------------------------------------------------------->
+  </th:block>
+
+  </body>
+</html>

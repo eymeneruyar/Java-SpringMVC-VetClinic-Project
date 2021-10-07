@@ -1,0 +1,205 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Eyüp Eymen ERUYAR
+    Project Name: Vet Klinik
+    Page: Firm Information Page 
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar
+    Date: 14.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+  <head>
+    <title>Firma Bilgileri</title>
+
+    <!-------------------------------------------------------- This Page Required CSS File -------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/pages/page-faq.css}">
+
+    <!-------------------------------------------------------- This Page Required CSS File -------------------------------------------------------->
+
+  </head>
+  <body>
+
+  <th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <div class="content-wrapper">
+            
+            <div class="content-body">
+
+                <section id="faq-search-filter">
+                    <div class="card faq-search" style="background-image: url('../../../app-assets/images/banner/banner.png')">
+                        <div class="card-body text-center">
+                            <!-- main title -->
+                            <h2 class="text-primary">Biraz da kendimizden bahsedelim</h2>
+
+                        </div>
+                    </div>
+                </section>
+                <!-- /search header -->
+
+                <!-- frequently asked questions tabs pills -->
+                <section id="faq-tabs">
+                    <!-- vertical tab pill -->
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-12">
+                            <div class="faq-navigation d-flex justify-content-between flex-column mb-2 mb-md-0">
+                                <!-- pill tabs navigation -->
+                                <ul class="nav nav-pills nav-left flex-column" role="tablist">
+                                    <!-- payment -->
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="payment" data-toggle="pill" href="#faq-payment" aria-expanded="true" role="tab">
+                                            <i data-feather="info" class="font-medium-3 mr-1"></i>
+                                            <span class="font-weight-bold">Hakkımızda</span>
+                                        </a>
+                                    </li>
+
+                                    <!-- delivery -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="delivery" data-toggle="pill" href="#faq-delivery" aria-expanded="false" role="tab">
+                                            <i data-feather="star" class="font-medium-3 mr-1"></i>
+                                            <span class="font-weight-bold">Misyon</span>
+                                        </a>
+                                    </li>
+
+                                    <!-- cancellation and return -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="cancellation-return" data-toggle="pill" href="#faq-cancellation-return" aria-expanded="false" role="tab">
+                                            <i data-feather="loader" class="font-medium-3 mr-1"></i>
+                                            <span class="font-weight-bold">Vizyon</span>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+
+                                <!-- FAQ image -->
+                                <img src="../../../app-assets/images/illustration/faq-illustrations.svg" class="img-fluid d-none d-md-block" alt="demand img" />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9 col-md-8 col-sm-12">
+                            <!-- pill tabs tab content -->
+                            <div class="tab-content">
+                                <!-- payment panel -->
+                                <div role="tabpanel" class="tab-pane active" id="faq-payment" aria-labelledby="payment" aria-expanded="true">
+
+                                    <!-- frequent answer and question  collapse  -->
+                                    <div class="collapse-margin collapse-icon mt-2" id="faq-payment-qna">
+                                        <div class="card">
+                                            <div class="card-header" id="paymentOne" data-toggle="collapse" role="button" data-target="#faq-payment-one" aria-expanded="false" aria-controls="faq-payment-one">
+                                                <span class="lead collapse-title">Hakkımızda</span>
+                                            </div>
+
+                                            <div id="faq-payment-one" class="collapse show" aria-labelledby="paymentOne" data-parent="#faq-payment-qna">
+                                                <div class="card-body">
+                                                    Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.
+                                                    Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan "de Finibus Bonorum et Malorum" (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan "Lorem ipsum dolor sit amet" 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- delivery panel -->
+                                <div class="tab-pane" id="faq-delivery" role="tabpanel" aria-labelledby="delivery" aria-expanded="false">
+
+                                    <!-- frequent answer and question  collapse  -->
+                                    <div class="collapse-margin collapse-icon mt-2" id="faq-delivery-qna">
+                                        <div class="card">
+                                            <div class="card-header" id="deliveryOne" data-toggle="collapse" role="button" data-target="#faq-delivery-one" aria-expanded="false" aria-controls="faq-delivery-one">
+                                                <span class="lead collapse-title">Misyon</span>
+                                            </div>
+
+                                            <div id="faq-delivery-one" class="collapse show" aria-labelledby="deliveryOne" data-parent="#faq-delivery-qna">
+                                                <div class="card-body">
+                                                    Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı, sürekli 'buraya metin gelecek, buraya metin gelecek' yazmaya kıyasla daha dengeli bir harf dağılımı sağlayarak okunurluğu artırmasıdır. Şu anda birçok masaüstü yayıncılık paketi ve web sayfa düzenleyicisi, varsayılan mıgır metinler olarak Lorem Ipsum kullanmaktadır. Ayrıca arama motorlarında 'lorem ipsum' anahtar sözcükleri ile arama yapıldığında henüz tasarım aşamasında olan çok sayıda site listelenir. Yıllar içinde, bazen kazara, bazen bilinçli olarak (örneğin mizah katılarak), çeşitli sürümleri geliştirilmiştir.
+                                                    Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir. Eğer bir Lorem Ipsum pasajı kullanacaksanız, metin aralarına utandırıcı sözcükler gizlenmediğinden emin olmanız gerekir. İnternet'teki tüm Lorem Ipsum üreteçleri önceden belirlenmiş metin bloklarını yineler. Bu da, bu üreteci İnternet üzerindeki gerçek Lorem Ipsum üreteci yapar. Bu üreteç, 200'den fazla Latince sözcük ve onlara ait cümle yapılarını içeren bir sözlük kullanır. Bu nedenle, üretilen Lorem Ipsum metinleri yinelemelerden, mizahtan ve karakteristik olmayan sözcüklerden uzaktır.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- cancellation return  -->
+                                <div class="tab-pane" id="faq-cancellation-return" role="tabpanel" aria-labelledby="cancellation-return" aria-expanded="false">
+
+                                    <!-- frequent answer and question  collapse  -->
+                                    <div class="collapse-margin collapse-icon mt-2" id="faq-cancellation-qna">
+                                        <div class="card">
+                                            <div class="card-header" id="cancellationOne" data-toggle="collapse" role="button" data-target="#faq-cancellation-one" aria-expanded="false" aria-controls="faq-cancellation-one">
+                                                <span class="lead collapse-title">
+                                                    Vizyon
+                                                </span>
+                                            </div>
+
+                                            <div id="faq-cancellation-one" class="collapse show" aria-labelledby="cancellationOne" data-parent="#faq-cancellation-qna">
+                                                <div class="card-body">
+                                                    Pastry pudding cookie toffee bonbon jujubes jujubes powder topping. Jelly beans gummi bears sweet roll
+                                                    bonbon muffin liquorice. Wafer lollipop sesame snaps. Brownie macaroon cookie muffin cupcake candy
+                                                    caramels tiramisu. Oat cake chocolate cake sweet jelly-o brownie biscuit marzipan. Jujubes donut
+                                                    marzipan chocolate bar. Jujubes sugar plum jelly beans tiramisu icing cheesecake.
+                                                    At tempor commodo ullamcorper a lacus vestibulum. Ultrices neque ornare aenean euismod. Dui vivamus
+                                                    arcu felis bibendum. Turpis in eu mi bibendum neque egestas congue. Nullam ac tortor vitae purus
+                                                    faucibus ornare suspendisse sed. Commodo viverra maecenas accumsan lacus vel facilisis volutpat est
+                                                    velit. Tortor consequat id porta nibh. Id aliquet lectus proin nibh nisl condimentum id venenatis a.
+                                                    Faucibus nisl tincidunt eget nullam non nisi. Enim nunc faucibus a pellentesque. Pellentesque diam
+                                                    volutpat commodo sed egestas egestas fringilla phasellus. Nec nam aliquam sem et tortor consequat id.
+                                                    Fringilla est ullamcorper eget nulla facilisi. Morbi tristique senectus et netus et.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- / frequently asked questions tabs pills -->
+
+                <!-- contact us -->
+                <section class="faq-contact">
+                    <div class="row mt-5 pt-75">
+                        <div class="col-12 text-center">
+                            <h2>Görüş ve Önerileriniz için Bize Ulaşın</h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card text-center faq-contact-card shadow-none py-1">
+                                <div class="card-body">
+                                    <div class="avatar avatar-tag bg-light-primary mb-2 mx-auto">
+                                        <i data-feather="phone-call" class="font-medium-3"></i>
+                                    </div>
+                                    <h4> (0212) 212 7433 </h4>
+                                    <span class="text-body">Her zaman yardımcı olmaktan mutluluk duyarız!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card text-center faq-contact-card shadow-none py-1">
+                                <div class="card-body">
+                                    <div class="avatar avatar-tag bg-light-primary mb-2 mx-auto">
+                                        <i data-feather="mail" class="font-medium-3"></i>
+                                    </div>
+                                    <h4>vetKlinik@info.com</h4>
+                                    <span class="text-body">Daha hızlı cevap almanın en iyi yolu!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ contact us -->
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+  </th:block>
+
+  </body>
+</html>

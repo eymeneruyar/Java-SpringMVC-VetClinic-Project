@@ -1,0 +1,220 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Eyüp Eymen ERUYAR - Süleyman KARACA
+    Project Name: Vet Klinik
+    Page: Vaccine Definition Page 
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar - https://github.com/slymnkrc
+    Date: 17.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+
+<head>
+    <title>Aşı Tanım</title>
+
+    <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <!-- Basic multiple Column Form section start -->
+        <section id="multiple-column-form">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Aşı Ekle</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <form class="formVaccine" id="formVaccine" >
+                                <div class="row">
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacName">Aşı Adı</label>
+                                            <input type="text" id="vacName" class="form-control" placeholder="Aşı Adı" name="vacName" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacUnit">Birim</label>
+                                            <select class="form-control" id="vacUnit" required>
+                                                <option value=" ">Lütfen Seçim Yapınız</option>
+                                                <option>Adet</option>
+                                                <option>KG</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacCategory">Kategori</label>
+                                            <select class="form-control" id="vacCategory" required>
+                                                <option value=" ">Lütfen Seçim Yapınız</option>
+                                                <option>Covid-19</option>
+                                                <option>İç Parazit</option>
+                                                <option>Dış Parazit</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacDetail">Aşı Detay</label>
+                                            <input type="text" id="vacDetail" class="form-control" placeholder="Aşı Detay" name="vacDetail" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacType">Aşı Tipi</label>
+                                            <select class="form-control" id="vacType" required>
+                                                <option value=" ">Lütfen Seçim Yapınız</option>
+                                                <option>Pet Aşı</option>
+                                                <option>Çiftlik Aşı</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacSupplier">Tedarikçi</label>
+                                            <select class="form-control" id="vacSupplier" required>
+                                                <option value=" ">Lütfen Seçim Yapınız</option>
+                                                <option value="1">A</option>
+                                                <option value="2">B</option>
+                                                <option value="3">C</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacBarcode">Aşı Barkod</label>
+                                            <input type="text" id="vacBarcode" class="form-control" placeholder="Aşı Barkod" name="vacBarcode" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacCode">Aşı Kodu</label>
+                                            <input type="text" id="vacCode" class="form-control" placeholder="Aşı Kodu" name="vacCode" disabled required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacTax">KDV %</label>
+                                            <select class="form-control" id="vacTax" required>
+                                                <option value=" ">Lütfen Seçim Yapınız</option>
+                                                <option value="1">%8</option>
+                                                <option value="2">%18</option>
+                                                <option value="3">Dahil</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacBuyingPrice">Alış Fiyatı</label>
+                                            <input type="number" id="vacBuyingPrice" class="form-control" placeholder="Alış Fiyatı" name="vacBuyingPrice" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacSalesPrice">Satış Fiyatı</label>
+                                            <input type="number" id="vacSalesPrice" class="form-control" placeholder="Satış Fiyatı" name="vacSalePrice" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="vacQuantity">Aşı Miktarı</label>
+                                            <input type="number" id="vacQuantity" class="form-control" placeholder="Aşı Miktarı" name="vacQuantity" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary mr-1">Kaydet</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Temizle</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Floating Label Form section end -->
+
+        <!-- Basic table -->
+        <section id="basic-datatable">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="datatables-basic table" id="vaccineDefinitionTable">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Aşı Kodu</th>
+                                <th>Kategori</th>
+                                <th>Aşı Adı</th>
+                                <th>Aşı Barkodu</th>
+                                <th>Alış Fiyatı (₺)</th>
+                                <th>Satış Fiyatı (₺)</th>
+                                <th>Yönetim</th>
+                            </tr>
+                            </thead>
+                            <tbody id="vacTableBody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- END: Content-->
+</th:block>
+
+
+
+<th:block layout:fragment="contentJs">
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+    <script th:src="@{/mainJs/vaccineDefinition.js}"></script>
+
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+
+</th:block>
+
+</body>
+</html>

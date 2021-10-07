@@ -1,0 +1,217 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!--
+    Author: Süleyman KARACA
+    Project Name: Vet Klinik
+    Page: Product Definition Page
+    Version: v1.1
+    GitHub: https://github.com/slymnkrc
+    Date: 12.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+
+<head>
+    <title>Satış</title>
+
+
+
+    <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/vendors.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+    <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+</head>
+<body>
+
+<th:block layout:fragment="content">
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+    <!-- Basic Vertical form layout section start -->
+    <section id="basic-vertical-layouts">
+        <div class="row">
+
+            <div class="col-md-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Kayıtlı Müşteriye Satış</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="salesForm">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="customerSelect" >Hasta Sahibi Seçiniz</label>
+
+                                        <select id="customerSelect" class="select2 form-control form-control-lg" required>
+                                            <option value="default">Lütfen Seçim Yapınız</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="patientsSelect">Hasta Seçiniz</label>
+                                        <select disabled id="patientsSelect" class="select2 form-control form-control-lg" required>
+                                            <option value="default">Lütfen Seçim Yapınız</option>
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="productsSelect">Ürün Seçiniz</label>
+                                        <select disabled id="productsSelect" class="select2 form-control form-control-lg">
+                                            <option value="default">Ürün Seçiniz</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-2">
+                                    <label for="saPrAmount">Miktar</label>
+                                    <section id="basic-touchspin_product">
+                                        <div class="input-group">
+                                            <input id="saPrAmount" type="number" class="touchspin" value="0" />
+                                        </div>
+                                    </section>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="vaccinesSelect" >Aşı Seçiniz</label>
+                                        <select disabled id="vaccinesSelect" name="vaccinesSelect" class="select2 form-control form-control-lg">
+                                            <option value="0">Aşı Seçiniz</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-3">
+                                    <label for="saVacAmount">Miktar</label>
+                                    <section id="basic-touchspin">
+                                        <div class="input-group">
+                                            <input id="saVacAmount" type="number" class="touchspin" value="0" />
+                                        </div>
+                                    </section>
+                                </div>
+
+
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                            <textarea id="saleNote2" name="saleNote2" class="form-control" placeholder="Satış Notu Giriniz..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="payType">Ödeme Yöntemi</label>
+                                        <select id="payType" class="select2 form-control form-control-lg">
+                                            <option value="1">Kredi Kartı</option>
+                                            <option value="2">Banka Kartı</option>
+                                            <option value="3">Havale/EFT</option>
+                                            <option value="4">Nakit</option>
+
+                                        </select>
+                                    </div>
+                                </div> <div class="col-3">
+                                <div class="form-group">
+                                    <label for="labType">Laboratuvar İşlemleri</label>
+                                    <select id="labType" class="select2 form-control form-control-lg">
+                                        <option value="1">İşlem Yok</option>
+                                        <option value="2">Kan Tahlili</option>
+                                        <option value="3">Röntgen Çekimi</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="receiptNo">Fatura No</label>
+                                        <input disabled id="receiptNo" class="form-control" type="text" placeholder="Fatura No" />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary mr-1">Gönder</button>
+                                    <button type="reset" class="btn btn-outline-secondary">Temizle</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Basic Vertical form layout section end -->
+
+
+        <!-- Basic table -->
+        <section id="basic-datatable">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="datatables-basic table dataTableDynamic" id="salesTable">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Fatura No</th>
+                                <th>Müşteri Adı</th>
+                                <th>Ödeme Yöntemi</th>
+                                <th>Tarih</th>
+                            </tr>
+                            </thead>
+                            <tbody id="salesTableBody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+</div>
+<!-- END: Content-->
+</th:block>
+
+
+<th:block layout:fragment="contentJs">
+<!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+
+<script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+<script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+
+<!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+<script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+<script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+<script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+<script th:src="@{/app-assets/js/scripts/forms/form-number-input.js}"></script>
+<script th:src="@{/app-assets/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js}"></script>
+<script th:src="@{/mainJs/sales.js}"></script>
+<!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+<!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+</th:block>
+
+
+</body>
+</html>

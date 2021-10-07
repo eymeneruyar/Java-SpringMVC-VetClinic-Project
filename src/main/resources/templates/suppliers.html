@@ -1,0 +1,152 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Süleyman KARACA
+    Project Name: Vet Klinik
+    Page: Suppliers Page
+    Version: v1.1
+    GitHub: https://github.com/slymnkrc
+    Date: 13.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+
+<head>
+    <title>Tedarikçiler</title>
+
+    <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+
+        <!-- Basic Vertical form layout section start -->
+        <section id="basic-vertical-layouts">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Yeni Tedarikçi Ekle</h4>
+                        </div>
+                        <div class="card-body">
+                            <form class="supForm" id="supForm">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label>Tedarikçi İsmi/Ünvanı</label>
+                                            <input id="supName" name="supName" type="text" class="form-control" required >
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label>E-Mail</label>
+                                            <input id="supEmail" name="supEmail" type="email" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label>Telefon Numarası</label>
+                                            <input id="supPhone" name="supPhone" type="number" class="form-control" required>
+                                        </div>
+                                    </div>
+<!--                                    <div class="col-3">-->
+<!--                                        <div class="form-group">-->
+<!--                                            <label>Ürün Ekle</label>-->
+<!--                                            <select id="supProduct" class="select2 form-control form-control-lg" required>-->
+<!--                                                <option value="">Ürün Seçimi Yapınız</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary mr-1">Gönder</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Temizle</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Basic Vertical form layout section end -->
+
+        <!-- Basic table -->
+        <section id="basic-datatable">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="datatables-basic table" id="suppliersTable">
+                            <thead>
+                            <tr>
+
+                                <th>id</th>
+                                <th>Tedarikçi İsmi</th>
+                                <th>E-Mail</th>
+                                <th>Telefon Numarası</th>
+                                <th>İşlemler</th>
+                            </tr>
+                            </thead>
+                            <tbody id="supTableBody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- END: Content-->
+
+
+</th:block>
+
+<th:block layout:fragment="contentJs">
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+    <script th:src="@{/mainJs/suppliers.js}"></script>
+
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+</th:block>
+
+</body>
+</html>

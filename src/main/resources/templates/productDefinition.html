@@ -1,0 +1,215 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Eyüp Eymen ERUYAR - Süleyman KARACA
+    Project Name: Vet Klinik
+    Page: Product Definition Page 
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar - https://github.com/slymnkrc
+    Date: 17.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+<head>
+    <title>Ürün Tanım</title>
+
+    <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <!-- Basic multiple Column Form section start -->
+        <section id="multiple-column-form">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Ürün Ekle</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <form class="formProduct" id="formProduct">
+                                <div class="row">
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pName">Ürün Adı</label>
+                                            <input type="text" id="pName" class="form-control" placeholder="Ürün Adı" name="pName" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pUnit">Birim</label>
+                                            <select class="form-control select2" name="pUnit" id="pUnit" required>
+                                                <option value=" ">Lütfen Seçim Yapınız</option>
+                                                <option>Adet</option>
+                                                <option>KG</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pCategory">Kategori</label>
+                                            <select class="form-control select2" name="pCategory" id="pCategory" required>
+                                                <option value=" ">Lütfen Seçim Yapınız</option>
+                                                <option>Mama</option>
+                                                <option>Kap</option>
+                                                <option>Ameliyet</option>
+                                                <option>Diğer</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pDetail">Ürün Detay</label>
+                                            <input type="text" id="pDetail" class="form-control" placeholder="Ürün Detay" name="pDetail" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pType">Ürün Tipi</label>
+                                            <select class="form-control select2" name="pType" id="pType" required>
+                                                <option value=" ">Lütfen Seçim Yapınız</option>
+                                                <option value="1">A</option>
+                                                <option value="2">B</option>
+                                                <option value="3">C</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pSupplier">Tedarikçi</label>
+                                            <select class="select2 form-control" name="pSupplier" id="pSupplier" required>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pBarcode">Ürün Barkod</label>
+                                            <input type="text" id="pBarcode" class="form-control" placeholder="Ürün Barkod" name="pBarcode" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pCode">Ürün Kodu</label>
+                                            <input type="text" id="pCode" class="form-control" placeholder="Ürün Kodu" name="pCode" disabled required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pTax">KDV %</label>
+                                            <select class="form-control select2" id="pTax" required>
+                                                <option value=" ">Lütfen Seçim Yapınız</option>
+                                                <option value="1">%8</option>
+                                                <option value="2">%18</option>
+                                                <option value="3">Dahil</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pBuyingPrice">Alış Fiyatı</label>
+                                            <input type="text" id="pBuyingPrice" class="form-control" placeholder="Alış Fiyatı" name="pBuyingPrice" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pSalePrice">Satış Fiyatı</label>
+                                            <input type="text" id="pSalePrice" class="form-control" placeholder="Satış Fiyatı" name="pSalePrice" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="pQuantity">Ürün Miktarı</label>
+                                            <input type="text" id="pQuantity" class="form-control" placeholder="Ürün Miktarı" name="pQuantity" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary mr-1">Kaydet</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Temizle</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Floating Label Form section end -->
+
+        <!-- Basic table -->
+        <section id="basic-datatable">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="datatables-basic table" id="productDefinitionTable">
+                            <thead>
+                            <tr>
+
+                                <th>Id</th>
+                                <th>Ürün Adı</th>
+                                <th>Ürün Barkodu</th>
+                                <th>Alış Fiyatı</th>
+                                <th>Satış Fiyatı</th>
+                                <th>Yönetim</th>
+                            </tr>
+                            </thead>
+                            <tbody id="proTableBody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- END: Content-->
+</th:block>
+
+
+<th:block layout:fragment="contentJs">
+
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+    <script th:src="@{/mainJs/productDefinition.js}"></script>
+
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+</th:block>
+
+</body>
+</html>

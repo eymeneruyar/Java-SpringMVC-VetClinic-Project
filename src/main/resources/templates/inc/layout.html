@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+
+    <!-------------------------------------------------------- Navbar CSS - Start --------------------------------------------------------->
+
+    <link rel="apple-touch-icon" th:href="@{/app-assets/images/ico/apple-icon-120.png}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/app-assets/images/ico/favicon.ico}">
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/vendors.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/charts/apexcharts.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/extensions/toastr.min.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/bootstrap-extended.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/colors.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/components.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/themes/dark-layout.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/themes/bordered-layout.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/themes/semi-dark-layout.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/core/menu/menu-types/vertical-menu.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/pages/dashboard-ecommerce.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/charts/chart-apex.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/extensions/ext-component-toastr.css}">
+
+
+    <!-------------------------------------------------------- Navbar CSS - End --------------------------------------------------------->
+
+</head>
+<body onload="startTime()" class="vertical-layout vertical-menu-modern  navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="">
+
+
+    <th:block th:replace="inc/skeletonProject :: header" ></th:block>
+    <th:block th:replace="inc/skeletonProject :: menu" ></th:block>
+    <th:block layout:fragment="content"></th:block>
+
+
+    <!-------------------------------------------------------- NavBar JavaScript File -------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/jquery/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/vendors.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/extensions/toastr.min.js}"></script>
+    <script th:src="@{/app-assets/js/core/app-menu.js}"></script>
+    <script th:src="@{/app-assets/js/core/app.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/charts/apexcharts.min.js}"></script>
+    <!-- <script th:src="@{/app-assets/js/scripts/pages/dashboard-ecommerce.js}"></script> -->
+    <script th:src="@{/mainJs/accountActivity.js}"></script>
+
+    <!-------------------------------------------------------- NavBar JavaScript File -------------------------------------------------------->
+
+    <th:block layout:fragment="contentJs"></th:block>
+
+    <script>
+        $(window).on('load', function() {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
+
+        function startTime(){
+            var today=new Date();
+            var day=(("0"+today.getDate()).slice(-2))
+            var month=(("0"+(today.getMonth()+1)).slice(-2))
+            var year= (today.getFullYear())
+            var h=today.getHours();
+            var m=today.getMinutes();
+            var s=today.getSeconds();
+            // add a zero in front of numbers<10
+            m=checkTime(m);
+            s=checkTime(s);
+            document.getElementById('time').innerHTML= day + "." + month + "." + year +" " +  "-" + " " + h + ":" + m + ":" + s;
+            t=setTimeout('startTime()',500);
+        }
+        function checkTime(i){
+            if (i<10){
+                i="0" + i;
+            }
+            return i;
+        }
+
+    </script>
+</body>
+</html>

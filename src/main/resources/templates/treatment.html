@@ -1,0 +1,214 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!--
+    Author: Eyüp Eymen ERUYAR - Süleyman KARACA
+    Project Name: Vet Klinik
+    Page: Product Definition Page
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar - https://github.com/slymnkrc
+    Date: 17.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+<head>
+  <title>Muayene</title>
+
+  <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+
+  <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css}">
+
+  <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+  <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+
+</head>
+<body>
+
+<th:block layout:fragment="content">
+  <!-- BEGIN: Content-->
+  <div class="app-content content ">
+    <!-- Basic multiple Column Form section start -->
+    <section id="multiple-column-form">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Muayene</h4>
+            </div>
+            <div class="card-body">
+
+              <form class="formTreatment" id="formTreatment">
+                <div class="row">
+                  <div class="col-md-4 col-12">
+                    <div class="form-group">
+                      <label for="customerSelect">Müşteri Adı</label>
+                      <select class="select2 form-control form-control-lg" name="customerSelect" id="customerSelect" required>
+                        <option value="default">Lütfen Seçim Yapınız</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="form-group">
+                      <label for="patientsSelect">Hasta Adı</label>
+                      <select class="select2 form-control form-control-lg" name="patientsSelect" id="patientsSelect" required>
+                        <option value="default">Lütfen Seçim Yapınız</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="form-group">
+                      <label for="vaccineSelect">Aşılar</label>
+                      <select class="select2 form-control form-control-lg" name="vaccineSelect" id="vaccineSelect" required>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="form-group">
+                      <label for="laboratory">Laboratuar İşlemleri</label>
+                      <select class="select2 form-control form-control-lg" name="laboratory" id="laboratory" required>
+                        <option value="default">Lütfen Seçim Yapınız</option>
+                        <option>Kan Tahlili</option>
+                        <option>İdrar Tahlili</option>
+                        <option>Diğer</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="form-group">
+                      <label for="operation">Cerrahi Operasyon</label>
+                      <select class="select2 form-control form-control-lg" name="operation" id="operation" required>
+                        <option value="default">Lütfen Seçim Yapınız</option>
+                        <option >Evet</option>
+                        <option >Hayır</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="form-group">
+                      <label for="dressing">Pansuman</label>
+                      <select class="select2 form-control form-control-lg" name="dressing" id="dressing" required>
+                        <option value="default">Lütfen Seçim Yapınız</option>
+                        <option >Evet</option>
+                        <option >Hayır</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="form-group">
+                      <label for="radiography">Görüntüleme</label>
+                      <select class="select2 form-control form-control-lg" name="radiography" id="radiography" required>
+                        <option value="default">Lütfen Seçim Yapınız</option>
+                        <option >Röntgen</option>
+                        <option >Ultrason</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="form-group">
+                      <label for="medicine">İlaçlar</label>
+                      <select class="select2 form-control form-control-lg" id="medicine" required>
+                        <option value="default">Lütfen Seçim Yapınız</option>
+                        <option value="Gıda Takviyesi">Gıda Takviyesi</option>
+                        <option value="Sindirim Düzenleyici">Sindirim Düzenleyici</option>
+                        <option value="Kaşıntı Spreyi">Kaşıntı Spreyi</option>
+                        <option value="İltihap Giderici">İltihap Giderici</option>
+                        <option value="Kas Gevşetici">Kas Gevşetici</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="form-group">
+                      <label for="treatmentCode">Muayene Kodu</label>
+                      <input type="text" id="treatmentCode" class="form-control" placeholder="Muayene Kodu" name="treatmentCode" disabled required/>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 col-12">
+                    <div class="form-group">
+                      <label for="treNote">Tanı/Teşhis Notları</label>
+                      <textarea id="treNote" name="treNote" class="form-control" style="height: 74px"
+                                placeholder="Muayene Notu Giriniz..."></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary mr-1">Kaydet</button>
+                    <input type="reset" onclick="reset()" class="btn btn-outline-secondary" value="Temizle">
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Basic Floating Label Form section end -->
+
+    <!-- Basic table -->
+    <section id="basic-datatable">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <table class="datatables-basic table" id="muayeneTable">
+              <thead>
+              <tr>
+
+                <th>Id</th>
+                <th>Müşteri Adı</th>
+                <th>Hasta Adı</th>
+                <th>Muayene Kodu</th>
+                <th>Teşhis</th>
+                <th>Yönetim</th>
+              </tr>
+              </thead>
+              <tbody id="treatmentTableBody">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- END: Content-->
+</th:block>
+
+
+<th:block layout:fragment="contentJs">
+
+  <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+
+  <script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+  <script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+
+  <!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+
+  <!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+  <script th:src="@{/mainJs/treatment.js}"></script>
+
+  <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+</th:block>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!--
+    Name: Eyüp Eymen ERUYAR - Süleyman KARACA
+    Project Name: Vet Klinik
+    Page: Customer Search Page HTML File
+    Version: v1.2
+    GitHub: https://github.com/eymeneruyar - https://github.com/slymnkrc
+    Date: 12.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+<head>
+    <title>Müşteri Arama ve Rapor</title>
+
+    <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+
+
+
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+
+        <!-- Basic table -->
+        <section id="basic-datatable">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="datatables-basic table" id="customerSearchTable">
+                            <thead>
+                            <tr>
+
+                                <th>id</th>
+                                <th>Ad ve Soyad</th>
+                                <th>Telefon Numarası</th>
+                                <th>E-Mail</th>
+                                <th>Tc No</th>
+                                <th>Not</th>
+                                <th>Yönetim</th>
+                            </tr>
+                            </thead>
+                            <tbody id="customerTableRow">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal to add new record -->
+            <!-- Modal -->
+            <div class="modal fade text-left" id="customerUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel17">Müşteri Düzenle</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <form id="customerUpdateForm">
+                            <div class="modal-body">
+                                <div class="row col-md-12">
+                                    <div class="col-md-6">
+                                        <label>Hasta Sahibi Adı: </label>
+                                        <div class="form-group">
+                                            <input type="text" id="cuName" name="cuName" placeholder="Ad" class="form-control" />
+                                        </div>
+                                        <label>VN/TC No: </label>
+                                        <div class="form-group">
+                                            <input type="text" id="cuTax" name="cuTax" placeholder="VN/TC No:" class="form-control" />
+                                        </div>
+                                        <label>Telefon Numarası: </label>
+                                        <div class="form-group">
+                                            <input type="text" id="cuPhone" name="cuPhone" placeholder="Telefon Numarası:" class="form-control" />
+                                        </div>
+                                        <label>E-Mail </label>
+                                        <div class="form-group">
+                                            <input type="text" id="cuEmail" name="cuEmail" placeholder="E-Mail" class="form-control" />
+                                        </div>
+                                        <label>İl </label>
+                                        <div class="form-group">
+                                            <input type="text" id="cuCity" name="cuCity" placeholder="İl" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Hasta Sahibi Soyadı: </label>
+                                        <div class="form-group">
+                                            <input type="text" id="cuSurname" name="cuSurname" placeholder="Soyad" class="form-control" />
+                                        </div>
+                                        <label>Vergi Dairesi: </label>
+                                        <div class="form-group">
+                                            <input type="text" id="cuTaxOffice" name="cuTaxOffice" placeholder="Vergi Dairesi:" class="form-control" />
+                                        </div>
+                                        <label>2. Telefon Numarası: </label>
+                                        <div class="form-group">
+                                            <input type="text" id="cuPhone2" name="cuPhone2" placeholder="2. Telefon Numarası" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="cuType">Müşteri Grubu</label>
+                                            <select class="select2 form-control form-control-lg" id="cuType" name="cuType" style="border-style: none;">
+                                                <option>Lütfen Seçim Yapınız</option>
+                                                <option th:value="Bireysel">Bireysel</option>
+                                                <option th:value="Kurumsal">Kurumsal</option>
+                                            </select>
+                                        </div>
+                                        <label>İlçe: </label>
+                                        <div class="form-group">
+                                            <input type="text" id="cuTown" name="cuTown" placeholder="İlçe" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Adres: </label>
+                                    <div class="form-group">
+                                        <textarea id="cuAddress" name="cuAddress" class="form-control" style="height: 100px" placeholder="Adres Giriniz..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Not: </label>
+                                    <div class="form-group">
+                                        <textarea id="cuNote" name="cuNote" class="form-control" style="height: 100px" placeholder="Not Giriniz..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="btnSend" type="submit" class="btn btn-primary" data-dismiss="modal">Tamamla</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal End-->
+        </section>
+        <!--/ Basic table -->
+
+    </div>
+    <!-- END: Content-->
+</th:block>
+
+
+
+<th:block layout:fragment="contentJs">
+
+    <!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+    <script th:src="@{/mainJs/customerSearch.js}"></script>
+
+</th:block>
+</body>
+</html>

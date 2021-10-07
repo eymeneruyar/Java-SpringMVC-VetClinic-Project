@@ -1,0 +1,137 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Eyüp Eymen ERUYAR
+    Project Name: Vet Klinik
+    Page: Product Definition Page 
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar
+    Date: 13.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+  <head>
+    <title>Depo</title>
+
+    <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+  </head>
+  <body>
+
+  <th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <!-- Basic multiple Column Form section start -->
+        <section id="multiple-column-form">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Depo Ekle</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <form class="form" id="storageAddForm">
+                                <div class="row">
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="storName">Depo Adı</label>
+                                            <input type="text" id="storName" class="form-control" placeholder="Depo Adı" name="storName" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="storNo">Depo No</label>
+                                            <input type="number" id="storNo" class="form-control" placeholder="Depo No" name="storNo" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="storStatus">Depo Durumu</label>
+                                            <select class="form-control" id="storStatus" required>
+                                                <option>Lütfen Seçim Yapınız</option>
+                                                <option th:value="Aktif">Aktif</option>
+                                                <option th:value="Kapalı">Kapalı</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary mr-1">Kaydet</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Temizle</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Floating Label Form section end -->
+
+        <!-- Basic table -->
+        <section id="basic-datatable">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="datatables-basic table" id="storageTable">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Depo No</th>
+                                    <th>Depo Adı</th>
+                                    <th>Depo Durumu</th>
+                                    <th>Yönetim</th>
+                                </tr>
+                            </thead>
+                            <tbody id="storageTableRow">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- END: Content-->
+  </th:block>
+
+
+  <!-------------------------------------------------------- This Page Required JavaScript File - Start ----------------------------------------------------------->
+  <th:block layout:fragment="contentJs">
+  <!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+  <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+
+  <!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+    <script th:src="@{/mainJs/storage.js}"></script>
+
+  <!-------------------------------------------------------- This Page Required JavaScript File - End ------------------------------------------------------------->
+  </th:block>
+
+
+  </body>
+</html>

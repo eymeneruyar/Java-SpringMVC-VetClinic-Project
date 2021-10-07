@@ -1,0 +1,218 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!--
+    Name: Süleyman KARACA
+    Project Name: Vet Klinik
+    Page: Patient Search Page HTML File
+    Version: v1.2
+    GitHub: https://github.com/slymnkrc
+    Date: 20.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+<head>
+    <title>Müşteri Arama ve Rapor</title>
+
+    <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/pickers/pickadate/pickadate.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/pickers/form-flat-pickr.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/plugins/forms/pickers/form-pickadate.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+
+
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+
+        <!-- Basic table -->
+        <section id="basic-datatable">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="datatables-basic table" id="patientSearchTable">
+                            <thead>
+                            <tr>
+
+                                <th>id</th>
+                                <th>Hasta Adı</th>
+                                <th>Chip/Karne No</th>
+                                <th>Doğum Tarihi</th>
+                                <th>Türü</th>
+                                <th>Cinsi</th>
+                                <th>Yönetim</th>
+                            </tr>
+                            </thead>
+                            <tbody id="patientTableRow">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal to add new record -->
+            <!-- Modal -->
+            <div class="modal fade text-left" id="patientUpdateModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel17" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel17">Müşteri Düzenle</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <form id="patientUpdateForm">
+                            <div class="modal-body">
+                                <div class="row col-md-12">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="customerSelect">Hasta Sahibi</label>
+                                            <select id="customerSelect" class="select2 form-control form-control-lg">
+                                                <option value="default">Lütfen Seçim Yapınız</option>
+                                            </select>
+                                        </div>
+                                        <label>Hasta Adı</label>
+                                        <div class="form-group">
+                                            <input type="text" id="paName" name="paName" placeholder="Hasta Adı"
+                                                   class="form-control"/>
+                                        </div>
+                                        <label>Çip Numarası </label>
+                                        <div class="form-group">
+                                            <input type="text" id="paChipNo" name="paChipNo" placeholder="Çip Numarası:"
+                                                   class="form-control"/>
+                                        </div>
+                                        <label>Karne/Küpe Numarası</label>
+                                        <div class="form-group">
+                                            <input type="text" id="paAirTag" name="paAirTag"
+                                                   placeholder="Karne/Küpe Numarası" class="form-control"/>
+                                        </div>
+                                        <label>Doğum Tarihi </label>
+                                        <div class="form-group">
+                                            <input type="text" id="paBirthDate" class="form-control flatpickr-basic"
+                                                   placeholder="YYYY-MM-DD" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="paType">Tür</label>
+                                            <select id="paType" class="select2 form-control form-control-lg">
+                                                <option value="default">Lütfen Seçim Yapınız</option>
+                                                <option>Kedi</option>
+                                                <option>Köpek</option>
+                                                <option>Yabani</option>
+
+                                            </select>
+                                        </div>
+                                    <label>Cins</label>
+                                    <div class="form-group">
+                                        <input type="text" id="paKind" name="paKind"
+                                               placeholder="Cins Bilgisi" class="form-control"/>
+                                    </div>
+                                    <label>Renk</label>
+                                    <div class="form-group">
+                                        <input type="text" id="paColor" name="paColor"
+                                               placeholder="Renk Bilgisi" class="form-control"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label" for="paSexType">Cinsiyet</label>
+                                        <select id="paSexType" class="select2 form-control form-control-lg">
+                                            <option value="default">Lütfen Seçim Yapınız</option>
+                                            <option>Erkek</option>
+                                            <option>Dişi</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="form-label" for="paSpay">Kısırlaştırıldı mı?</label>
+                                        <select id="paSpay" class="select2 form-control form-control-lg">
+                                            <option value="default">Lütfen Seçim Yapınız</option>
+                                            <option>Evet</option>
+                                            <option>Hayır</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button id="btnSend" type="submit" class="btn btn-primary" data-dismiss="modal">
+                                    Güncelle
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal End-->
+        </section>
+        <!--/ Basic table -->
+
+
+        <!-- END: Content-->
+
+
+    </div>
+    <!-- Modal to add new record -->
+    <!-- Modal -->
+
+</th:block>
+
+
+<th:block layout:fragment="contentJs">
+
+    <!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/picker.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/picker.date.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/picker.time.js}"></script>
+    <script th:src="@{/app-assets/vendors/js/pickers/pickadate/legacy.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/pickers/form-pickers.js}"></script>
+
+    <!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+    <script th:src="@{/mainJs/patientSearch.js}"></script>
+
+</th:block>
+</body>
+</html>

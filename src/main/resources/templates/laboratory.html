@@ -1,0 +1,198 @@
+<!--------------------------------------- Project Information - Start --------------------------------------->
+<!-- 
+    Author: Eyüp Eymen ERUYAR
+    Project Name: Vet Klinik
+    Page: Laboratory Definition Page
+    Version: v1.0
+    GitHub: https://github.com/eymeneruyar
+    Date: 12.09.2021
+-->
+<!--------------------------------------- Project Information - End ----------------------------------------->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+  <head>
+    <title>Laboratuvar</title>
+
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/select/select2.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - Start --------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/vendors.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css}">
+
+    <!-------------------------------------------------------- Table CSS - End --------------------------------------------------------->
+
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+
+  </head>
+  <body>
+
+  <th:block layout:fragment="content">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <!-- Basic multiple Column Form section start -->
+        <section id="multiple-column-form">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Laboratuvar Sonucu Ekle</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <form class="form" id="laboratoryAddForm" th:action="@{/laboratory/add}" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-12">
+                                        <label class="form-label" for="labCuId">Hasta Sahibi</label>
+                                        <select class="select2 form-control form-control-lg" name="labCuId" id="labCuId" style="border-style: none;" required>
+                                            <option th:value="-1">Lütfen Seçim Yapınız</option>
+                                            <th:block th:each="item : ${customerList}">
+                                                <option th:value="${item.cuId}" th:text="${item.cuName} + ' ' +  ${item.cuSurname}"></option>
+                                            </th:block>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6 col-12">
+                                        <label class="form-label" for="labPaId">Hasta</label>
+                                        <select class="select2 form-control form-control-lg" name="labPaId" id="labPaId" style="border-style: none;" required>
+                                            <option th:value="-1">Lütfen Seçim Yapınız</option>
+                                            <th:block th:each="item : ${patientList}">
+                                                <option th:value="${item.paId}" th:text="${item.paName} + ' -- ' +  ${item.paAirTagNo}"></option>
+                                            </th:block>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="labType">Laboratuvar Türü</label>
+                                            <select class="form-control" id="labType" name="labType" required>
+                                                <option th:value="-1">Lütfen Seçim Yapınız</option>
+                                                <option th:value="Hemogram">Hemogram</option>
+                                                <option th:value="Röntgen">Röntgen</option>
+                                                <option th:value="Biyokimya">Biyokimya</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label for="labFileName">Dosya Seç</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="labFileName" name="fileName" accept="image/*" multiple="multiple" />
+                                                <label class="custom-file-label" for="labFileName">Dosya Seç</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="labNote">Teşhis</label>
+                                            <textarea class="form-control" id="labNote" name="labNote" placeholder="Teşhisler" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary mr-1">Kaydet</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Temizle</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Floating Label Form section end -->
+
+        <!-- Basic table -->
+        <section id="basic-datatable">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="datatables-basic table" id="labReportTable">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Hasta Sahibi</th>
+                                    <th>Hasta Adı</th>
+                                    <th>Karne/Küpe Numarası</th>
+                                    <th>Laboratuvar Türü</th>
+                                    <th>Tarih</th>
+                                    <th>Yönetim</th>
+                                </tr>
+                            </thead>
+                            <tbody id="laboratoryTableRow">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal to add new record -->
+            <!-- Modal -->
+            <div class="modal fade text-left" id="large" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="text-primary"  id="myModalLabel17">Laboratuvar Sonuç Detayları</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+
+                            <div class="modal-body" th:object="${labInfo}" id="labInfoModal">
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Modal End-->
+        </section>
+        
+    </div>
+    <!-- END: Content-->
+  </th:block>
+
+
+  <th:block layout:fragment="contentJs">
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+
+    <script th:src="@{/app-assets/vendors/js/forms/select/select2.full.min.js}"></script>
+    <script th:src="@{/app-assets/js/scripts/forms/form-select2.js}"></script>
+
+      <!-------------------------------------------------------- Table JS - Start --------------------------------------------------------->
+
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/jszip.min.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/pdfmake.min.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/vfs_fonts.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.html5.min.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/buttons.print.min.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js}"></script>
+      <script th:src="@{/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js}"></script>
+
+      <!-------------------------------------------------------- Table JS - End --------------------------------------------------------->
+
+      <script th:src="@{/mainJs/laboratory.js}"></script>
+
+    <!-------------------------------------------------------- This Page Required JavaScript File -------------------------------------------------------->
+  </th:block>
+
+  </body>
+</html>
