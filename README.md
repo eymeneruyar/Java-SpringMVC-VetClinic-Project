@@ -1,4 +1,4 @@
-# Java Spring MVC VetClinic Project
+# Vet Clinic Project
 
 # Abstract
 This project is developed for vets and workers. The goal of the Vet Clinic project is to create a patient, product, and cash box management multi-part platform that abilities following patient's results, management of the products in the clinic, and cash box management.
